@@ -20,5 +20,5 @@ Static site, no build step. Deploy directly to GitHub Pages.
 2. Upload all these files/folders to the repo root (index.html, doc.html, style.css, manifest.json, docs/)
 3. Go to repo Settings > Pages
 4. Under "Build and deployment", set Source = "Deploy from a branch", Branch = main, folder = / (root)
-5. Save. Your site goes live at https://YOUR-USERNAME.github.io/prep-notes/ within a minute or two
+5. Save. Your site goes live at [https://YOUR-USERNAME.github.io/prep-notes/](https://am-vishal.github.io/prep-note-site/) within a minute or two
 6. Bookmark that URL / add to your phone's home screen for one-tap access
