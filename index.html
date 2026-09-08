@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<title>Prep Notes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span class="mark"><a href="index.html">Prep notes</a></span>
+</div>
+
+<div class="home-header">
+  <h1>Interview & career prep</h1>
+  <p>Everything in one place, formatted for reading on your phone. Tap any note to open it.</p>
+</div>
+
+<div id="list" class="card-list"></div>
+
+<script>
+fetch('manifest.json')
+  .then(r => r.json())
+  .then(items => {
+    const list = document.getElementById('list');
+    if (!items.length) {
+      list.outerHTML = '<div class="empty-state">No notes added yet. Drop .md files into the docs folder and list them in manifest.json.</div>';
+      return;
+    }
+    list.innerHTML = items.map(item => `
+      <a class="card" href="doc.html?f=${encodeURIComponent(item.file)}">
+        <p class="card-title">${escapeHtml(item.title)}</p>
+        <p class="card-desc">${escapeHtml(item.desc || '')}</p>
+      </a>
+    `).join('');
+  })
+  .catch(() => {
+    document.getElementById('list').outerHTML =
+      '<div class="empty-state">Could not load manifest.json — make sure it sits next to index.html.</div>';
+  });
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+</script>
+
+</body>
+</html>

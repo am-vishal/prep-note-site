@@ -1,0 +1,32 @@
+[
+  {
+    "file": "docs/VTEX_Interview_Prep.md",
+    "title": "VTEX Technical Prep",
+    "desc": "Architecture, workspaces, Master Data, order broadcast, service.json, schema, marketplace"
+  },
+  {
+    "file": "docs/Logixal_Tech_Lead_JD_Prep.md",
+    "title": "Logixal Tech Lead — JD Breakdown",
+    "desc": "Line-by-line JD prep, pronunciation guide, and question bank"
+  },
+  {
+    "file": "docs/VTEX_Candidate_Answers_ReadAloud.md",
+    "title": "Candidate Answer Scripts",
+    "desc": "Full spoken-style answers, ready to read aloud"
+  },
+  {
+    "file": "docs/Backend_NodeJS_VTEXIO_Interview_QA.md",
+    "title": "Node.js + VTEX IO Backend Q&A",
+    "desc": "Basic to medium level backend interview questions"
+  },
+  {
+    "file": "docs/Vishal_Lean_Career_Plan.md",
+    "title": "Lean Career Plan",
+    "desc": "The realistic, 30 min/day version — start here"
+  },
+  {
+    "file": "docs/Vishal_Career_Strategy_2026.md",
+    "title": "Full Career Strategy",
+    "desc": "The complete 16-section deep-dive plan"
+  }
+]

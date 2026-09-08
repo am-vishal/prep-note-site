@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<title>Prep Notes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <a class="back" href="index.html">&larr; Notes</a>
+</div>
+
+<div class="reader-wrap">
+  <div id="content" class="reader">
+    <div class="loading">Loading&hellip;</div>
+  </div>
+  <div class="doc-footer" id="footer" style="display:none">You've reached the end.</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const file = params.get('f');
+const contentEl = document.getElementById('content');
+
+if (!file) {
+  contentEl.innerHTML = '<div class="error">No document specified.</div>';
+} else {
+  fetch(file)
+    .then(r => {
+      if (!r.ok) throw new Error('not found');
+      return r.text();
+    })
+    .then(md => {
+      marked.setOptions({ gfm: true, breaks: false });
+      let html = marked.parse(md);
+      // wrap tables so they scroll horizontally on phones instead of squashing
+      html = html.replace(/<table>/g, '<div class="table-wrap"><table>')
+                  .replace(/<\/table>/g, '</table></div>');
+      contentEl.innerHTML = html;
+      document.getElementById('footer').style.display = 'block';
+      document.title = (contentEl.querySelector('h1')?.textContent || 'Note') + ' — Prep Notes';
+    })
+    .catch(() => {
+      contentEl.innerHTML = '<div class="error">Could not load this note. Check that the file exists in the docs folder and is listed correctly in manifest.json.</div>';
+    });
+}
+
+// reading progress bar
+const bar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const height = h.scrollHeight - h.clientHeight;
+  bar.style.width = height > 0 ? (scrolled / height * 100) + '%' : '0%';
+});
+</script>
+
+</body>
+</html>
